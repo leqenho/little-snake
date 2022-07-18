@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./src/styles/style.css" />
+  <title>Snake Game</title>
+</head>
+
+<body>
+  <header>Snake</header>
+  <div id="app">
+    <div class="time d-none">
+      <img src="./src/images/fruit-four.png" width="20" height="20" />
+      <span class="time_counter">20</span>
+    </div>
+    <div class="container">
+      <canvas id="board" width="1000" height="1000"></canvas>
+    </div>
+    <section class="score">
+      <div>
+        <p class="current_score">Score: <span id="current">0001</span></p>
+        <p class="high_score">High score: <span id="high">0075</span></p>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="./src/scripts/main.js"></script>
+  <script type="module" src="./src/scripts/render.js"></script>
+  <script>
+    var game = {
+      pixel: 40,
+      speed: 1000,
+      score: {
+        current: 0,
+        high: 0,
+      },
+      move: {
+        current: 'ArrowRight',
+        xAxis: ['ArrowLeft', 'ArrowRight'],
+        yAxis: ['ArrowUp', 'ArrowDown'],
+      },
+      fruits: {
+        x: 12, y: 12,
+      },
+      snake: {
+        tail: [
+          { direction: 'ArrowRight', x: 2, y: 23 },
+          { direction: 'ArrowRight', x: 1, y: 23 },
+          { direction: 'ArrowRight', x: 0, y: 23 },
+        ]
+      },
+    }
+  </script>
+</body>
+
+</html>
