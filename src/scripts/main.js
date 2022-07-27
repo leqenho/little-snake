@@ -3,12 +3,7 @@ import {
   ArrowDown,
   ArrowLeft,
   ArrowRight
-} from "./actions";
-
-var snakeLooping = setInterval(() => {
-  let looping = move.action[game.move.current]
-  looping();
-}, game.speed);
+} from "./actions.js";
 
 const move = {
   action: {
@@ -44,6 +39,13 @@ document.onkeydown = event => {
     : keyCode = event.key;
 
   let gameboardEvent = move.gameboardEvent[keyCode];
-  
+
   if (gameboardEvent) gameboardEvent();
 };
+
+(() => game.looping = setInterval(() => {
+  let loopingGame = move.action[game.move.current]
+  loopingGame();
+}, game.speed))();
+
+export { move }

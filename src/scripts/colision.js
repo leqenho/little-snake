@@ -1,3 +1,5 @@
+import { move } from './main.js';
+
 const { width, height } = document.getElementById('board');
 const { pixel } = game;
 
@@ -37,14 +39,21 @@ function collisionWithFruit(step) {
     game.snake.tail.push(game.snake.tail.length - 1);
     game.fruits = suggestedPosition;
     game.score.current += 1;
-    
-    if (game.speed > 100) {
-      game.speed -= 50;
-    }
-    if (game.speed > 50 && game.speed <= 100) {
-      game.speed -= 5;
-    }
   }
+
+  function upSpeed(up) {
+    clearInterval(game.looping);
+    game.speed = up;
+    game.looping = setInterval(() => {
+      let looping = move.action[game.move.current]
+      looping();
+    }, game.speed);
+  }
+
+  if (game.snake.tail.length > 8) upSpeed(200);
+  if (game.snake.tail.length > 15) upSpeed(150);
+  if (game.snake.tail.length > 20) upSpeed(100);
+  if (game.snake.tail.length > 30) upSpeed(50);
 }
 
 export { collisionWithWall, collisionWithFruit }

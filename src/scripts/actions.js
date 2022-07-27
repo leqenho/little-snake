@@ -1,4 +1,4 @@
-import { collisionWithWall, collisionWithFruit } from './colision';
+import { collisionWithWall, collisionWithFruit } from './colision.js';
 
 const ArrowUp = () => setNextStep('ArrowUp', -1);
 const ArrowDown = () => setNextStep('ArrowDown', 1);
@@ -16,7 +16,7 @@ function setNextStep(direction, increment) {
   }
 
   collisionWithFruit(nextStep);
-  
+
   game.snake.tail.unshift(nextStep);
   game.snake.tail.pop();
 
@@ -36,7 +36,8 @@ function gameOver() {
   game.fruits = {
     x: 12, y: 12,
   };
-  game.speed = 1000;
+  clearInterval(game.looping);
+  game.speed = 500;
   game.score.current = 0;
   game.move.current = 'ArrowRight';
 }
